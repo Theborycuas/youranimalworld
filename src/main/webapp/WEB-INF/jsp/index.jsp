@@ -1,4 +1,4 @@
-<jsp:include page="header.jsp" />
+<jsp:include page="/WEB-INF/jsp/common/header.jsp" />
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 
 
@@ -8,8 +8,9 @@
       <h1>Dashboard</h1>
       <nav>
         <ol class="breadcrumb">
-          <li class="breadcrumb-item"><a href="index.html">Home</a></li>
-          <li class="breadcrumb-item active">Dashboard</li>
+          <li class="breadcrumb-item"><a href="index">Home</a></li>
+          <li class="breadcrumb-item">Dashboard</li>
+          <li class="breadcrumb-item active"><a href="/add-user">Crear User</a></li>
         </ol>
       </nav>
     </div><!-- End Page Title -->
@@ -18,7 +19,7 @@
       <div class="row">
 
         <!-- Left side columns -->
-        <div class="col-lg-8">
+        <div class="col-lg-9">
           <div class="row">
 
 
@@ -50,22 +51,36 @@
 	                        <th scope="col">Nombres</th>
 	                        <th scope="col">Apellidos</th>
 	                        <th scope="col">Correo</th>
-	                        <th scope="col">Cupleaños</th>
 	                        <th scope="col">Ciudad</th>
-	                        <th scope="col">Teléfono</th>
+	                        <th scope="col">Teléfono</th>	                        
+	                        <th scope="col" text-align: center;>Acción</th>
 	                      </tr>
 	                    </thead>
 	                    <tbody>
 	                    <c:forEach items="${users}" var="user">
 	                      <tr>
 	                        <th scope="row"><a href="#">${user.id }</a></th>
-	                        <td><span class="badge bg-success">${user.state}</span></td>
+	                        
+	                        <c:choose>	                        
+		                        <c:when test="${user.state == 'Activo' }">
+		                    		<td><span class="badge bg-success">${user.state}</span></td>    	
+		                        </c:when>
+		                        <c:when test="${user.state == 'No Activo' }">
+		                        	<td><span class="badge bg-warning">${user.state}</span></td>
+		                        </c:when>
+	                        </c:choose>
 	                        <td>${user.firstname }</td>
 	                        <td>${user.lastname }</td>
+	                        
 	                        <td><a href="#" class="text-primary">${user.email}</a></td>
-	                        <td>${user.birthday }</td>
 	                        <td>${user.city }</td>
-	                        <td><a href="#" class="text-primary">${user.phone}</a></td>                                                
+	                        <td>${user.phone }</td>
+	                        
+	                        <td>
+		                        <button type="button" class="btn btn-warning">Editar</button>
+		                        <button type="button" class="btn btn-danger">Eliminar</button>
+	                        </td>
+              				<td></td>                                                
 	                      </tr>
 	                      </c:forEach>
 	                      
@@ -347,7 +362,7 @@
         </div><!-- End Left side columns -->
 
         <!-- Right side columns -->
-        <div class="col-lg-4">
+        <div class="col-lg-3">
 
           <!-- Recent Activity -->
           <div class="card">
@@ -634,4 +649,4 @@
     </section>
 
   </main><!-- End #main -->
-<jsp:include page="footer.jsp" />
+<jsp:include page="/WEB-INF/jsp/common/header.jsp" />

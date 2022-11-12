@@ -32,7 +32,14 @@ public class UserService implements IuserService {
 	@Override
 	public int save(User u) {
 		// TODO Auto-generated method stub
-		return 0;
+		int res = 0;
+		User user = dataIUser.save(u);
+		if (!user.equals(null)) {
+			
+			res=1;
+			
+		}
+		return res;
 	}
 
 	@Override
